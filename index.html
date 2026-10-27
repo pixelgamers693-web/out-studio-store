@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,24 +6,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OUT STUDIO | Minecraft Store</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f5f7ff;font-family:Arial,sans-serif}header{padding:24px 16px;text-align:center;background:#121a30;border-bottom:1px solid #293653}h1{color:#56e0c0;margin:0}header p{color:#b9c6dc}.hero{text-align:center;padding:42px 16px 24px}.hero h2{font-size:30px;margin:0 0 12px}.hero p{color:#b9c6dc}.server{display:inline-block;background:#17243b;border:1px solid #36516f;border-radius:10px;padding:12px 16px;margin-top:12px}.section{max-width:1000px;margin:25px auto;padding:0 16px}.section h2{text-align:center}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.card{background:#121a30;border:1px solid #293653;border-radius:16px;padding:22px;text-align:center}.icon{font-size:42px}.price{font-size:25px;font-weight:bold;color:#56e0c0}.card p{color:#b9c6dc;min-height:40px}.btn{display:inline-block;border:0;border-radius:9px;padding:12px 18px;background:#56e0c0;color:#07121b;font-weight:bold;cursor:pointer;text-decoration:none}.coin{color:#ffd166}footer{text-align:center;color:#9baac2;padding:35px 15px}input{padding:12px;border-radius:8px;border:1px solid #36516f;background:#0b1020;color:white;width:100%;margin:8px 0}
+*{box-sizing:border-box}
+body{margin:0;background:#080e1e;color:#f5f7ff;font-family:Arial,sans-serif}
+header{text-align:center;padding:25px;background:#121b31}
+header h1{color:#55e0c0;margin:0}
+header p,.muted{color:#b9c4d8}
+main{max-width:1000px;margin:auto;padding:16px}
+h2{text-align:center;margin-top:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.card,.panel{background:#121b31;border:1px solid #25324d;border-radius:14px;padding:18px;text-align:center}
+.emoji{font-size:35px}
+.price{color:#55e0c0;font-size:21px;font-weight:bold}
+button,.pay{display:inline-block;background:#55e0c0;color:#07111d;border:0;border-radius:8px;padding:12px 16px;font-weight:bold;text-decoration:none;cursor:pointer;margin:5px}
+input,select{width:100%;padding:13px;margin:7px 0;background:#080e1e;color:white;border:1px solid #34415c;border-radius:7px}
+.qr{display:block;width:min(100%,300px);margin:15px auto;border-radius:10px;background:white}
+.note{font-size:13px;line-height:1.6;color:#b9c4d8}
+footer{text-align:center;padding:25px;color:#9ca9c0}
 </style>
 </head>
 <body>
-<header><h1>OUT STUDIO</h1><p>MINECRAFT • RANKS • COINS • STORE</p></header>
-<section class="hero"><h2>Upgrade Your Adventure</h2><p>Choose your rank and get ready to rule the server!</p><div class="server">🎮 Server IP: <strong>ADD-YOUR-SERVER-IP</strong></div></section>
-<section class="section"><h2>👑 Rank Store</h2><div class="grid">
-<div class="card"><div class="icon">⚔️</div><h3>VIP</h3><p>Starter perks for your adventure.</p><div class="price">₹49</div><p>Demo price — not a real purchase</p><button class="btn" onclick="buy('VIP')">Select Rank</button></div>
-<div class="card"><div class="icon">💎</div><h3>MVP</h3><p>Extra perks for dedicated players.</p><div class="price">₹99</div><p>Demo price — not a real purchase</p><button class="btn" onclick="buy('MVP')">Select Rank</button></div>
-<div class="card"><div class="icon">👑</div><h3>KING</h3><p>Stand out across the server.</p><div class="price">₹149</div><p>Demo price — not a real purchase</p><button class="btn" onclick="buy('KING')">Select Rank</button></div>
-<div class="card"><div class="icon">🌟</div><h3>LEGEND</h3><p>For the ultimate legend.</p><div class="price">₹199</div><p>Demo price — not a real purchase</p><button class="btn" onclick="buy('LEGEND')">Select Rank</button></div>
-</div></section>
-<section class="section"><h2>🪙 Coin Store</h2><div class="grid"><div class="card"><div class="icon">🪙</div><h3>1,000 Coins</h3><div class="price">₹29</div><button class="btn" onclick="buy('1000 Coins')">Select Coins</button></div><div class="card"><div class="icon">💰</div><h3>5,000 Coins</h3><div class="price">₹99</div><button class="btn" onclick="buy('5000 Coins')">Select Coins</button></div></div></section>
-<section class="section"><div class="card"><h2>📩 Purchase Enquiry</h2><p>Enter your Minecraft username and selected item. This demo does not collect or process payments.</p><input id="player" placeholder="Minecraft username"><input id="item" placeholder="Rank or coin package"><button class="btn" onclick="enquiry()">Create Enquiry</button><p id="result"></p></div></section>
-<footer>© OUT STUDIO • Minecraft Store<br>Demo website — payments and server rewards are not connected yet.</footer>
+<header>
+<h1>OUT STUDIO</h1>
+<p>MINECRAFT • RANKS • COINS • STORE</p>
+</header>
+
+<main>
+<section class="panel">
+<h2>⚔️ Upgrade Your Adventure</h2>
+<p class="muted">Choose your rank or coin package!</p>
+<p>🎮 Server IP: <strong>ADD-YOUR-SERVER-IP</strong></p>
+<p class="note">Server IP ko baad mein apne asli server address se replace karna.</p>
+</section>
+
+<h2>👑 Rank Store</h2>
+<div class="grid">
+<div class="card"><div class="emoji">⚔️</div><h3>VIP</h3><p>Starter perks</p><p class="price">₹49</p><button onclick="choose('VIP',49)">Select Rank</button></div>
+<div class="card"><div class="emoji">💎</div><h3>MVP</h3><p>Extra perks</p><p class="price">₹99</p><button onclick="choose('MVP',99)">Select Rank</button></div>
+<div class="card"><div class="emoji">👑</div><h3>KING</h3><p>Stand out</p><p class="price">₹149</p><button onclick="choose('KING',149)">Select Rank</button></div>
+<div class="card"><div class="emoji">🌟</div><h3>LEGEND</h3><p>Ultimate rank</p><p class="price">₹199</p><button onclick="choose('LEGEND',199)">Select Rank</button></div>
+</div>
+
+<h2>🪙 Coin Store</h2>
+<div class="grid">
+<div class="card"><div class="emoji">🪙</div><h3>1,000 Coins</h3><p class="price">₹29</p><button onclick="choose('1000 Coins',29)">Select Coins</button></div>
+<div class="card"><div class="emoji">💰</div><h3>5,000 Coins</h3><p class="price">₹99</p><button onclick="choose('5000 Coins',99)">Select Coins</button></div>
+</div>
+
+<h2>📩 Purchase & UPI Payment</h2>
+<div class="panel">
+<form id="orderForm">
+<label>Minecraft Username</label>
+<input id="player" placeholder="Enter Minecraft username" required>
+
+<label>Select package</label>
+<select id="item" onchange="updateAmount()" required>
+<option value="">Choose rank or coins</option>
+<option value="VIP" data-price="49">VIP - ₹49</option>
+<option value="MVP" data-price="99">MVP - ₹99</option>
+<option value="KING" data-price="149">KING - ₹149</option>
+<option value="LEGEND" data-price="199">LEGEND - ₹199</option>
+<option value="1000 Coins" data-price="29">1,000 Coins - ₹29</option>
+<option value="5000 Coins" data-price="99">5,000 Coins - ₹99</option>
+</select>
+
+<p class="price" id="amount">Amount: ₹0</p>
+<button type="button" onclick="payNow()">Pay with UPI App</button>
+
+<p class="note">Ya QR scan karke payment karo. Payment karne se pehle amount aur UPI ID check karna.</p>
+<img class="qr" src="AccountQRCodeAirtel%20Payments%20Bank%20Limited%20-%204323_LIGHT_THEME.png" alt="PhonePe payment QR code">
+<p><strong>UPI ID</strong></p>
+<p id="upi">6000624323-ld8a-2@ybl</p>
+<button type="button" onclick="copyUPI()">Copy UPI ID</button>
+
+<label>UPI Transaction ID / UTR</label>
+<input id="utr" placeholder="Payment ke baad UTR bharo" required>
+
+<button type="submit">Prepare Order Details</button>
+</form>
+
+<div id="result" class="note" aria-live="polite"></div>
+</div>
+
+<footer>
+© OUT STUDIO • Minecraft Store
+<p class="note">Orders manually verify honge. Payment se rank ya coins automatically deliver nahi honge. Payment proof server staff ko bhejein.</p>
+</footer>
+</main>
+
 <script>
-function buy(item){document.getElementById('item').value=item;document.getElementById('player').focus();document.getElementById('result').textContent='Selected: '+item+'. Enter your Minecraft username to prepare an enquiry.'}
-function enquiry(){let p=document.getElementById('player').value.trim(),i=document.getElementById('item').value.trim();if(!p||!i){document.getElementById('result').textContent='Please enter both your Minecraft username and selected item.';return}document.getElementById('result').textContent='Enquiry prepared for '+p+' — '+i+'. No payment has been taken. Contact the server owner to complete the purchase.'}
+function choose(name,price){
+document.getElementById('item').value=name;
+updateAmount();
+document.getElementById('player').focus();
+document.getElementById('orderForm').scrollIntoView({behavior:'smooth'});
+}
+function updateAmount(){
+const s=document.getElementById('item');
+const o=s.options[s.selectedIndex];
+document.getElementById('amount').textContent='Amount: ₹'+(o.dataset.price||0);
+}
+function payNow(){
+const s=document.getElementById('item');
+const o=s.options[s.selectedIndex];
+if(!s.value){alert('Pehle package select karo');return;}
+const amount=o.dataset.price;
+const url='upi://pay?pa=6000624323-ld8a-2@ybl&pn=OUT%20STUDIO&am='+amount+'&cu=INR&tn='+encodeURIComponent('Minecraft '+s.value);
+location.href=url;
+}
+function copyUPI(){
+if(navigator.clipboard){
+navigator.clipboard.writeText('6000624323-ld8a-2@ybl')
+.then(()=>alert('UPI ID copied'))
+.catch(()=>alert('UPI ID: 6000624323-ld8a-2@ybl'));
+}else{
+alert('UPI ID: 6000624323-ld8a-2@ybl');
+}
+}
+document.getElementById('orderForm').addEventListener('submit',function(e){
+e.preventDefault();
+const player=document.getElementById('player').value.trim();
+const item=document.getElementById('item').value;
+const utr=document.getElementById('utr').value.trim();
+if(!player||!item||!utr){alert('Saari details bharo');return;}
+const s=document.getElementById('item');
+const amount=s.options[s.selectedIndex].dataset.price;
+document.getElementById('result').textContent=
+'Order details: Minecraft username: '+player+
+' | Package: '+item+' | Amount: ₹'+amount+
+' | UTR: '+utr+
+'. Details copy karke server staff ko bhejo. Ye website order ko automatically send nahi karti.';
+});
 </script>
 </body>
 </html>
